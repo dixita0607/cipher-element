@@ -1,0 +1,7 @@
+{
+  "name": "cipher-web-app",
+  "short_name": "cipher-web-app",
+  "description": "An application to cipher or decipher your text using different ciphers",
+  "start_url": "/",
+  "display": "standalone"
+}
