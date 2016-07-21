@@ -1,0 +1,55 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../cipher-input/cipher-input.html">
+
+<dom-module id="caesar-cipher">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+
+        <cipher-input cipher-title="Caesar Cipher" plain-text="{{caesarPlainText}}" key="{{caesarKey}}"
+                      cipher-text="{{caesarCipherText}}"></cipher-input>
+
+    </template>
+
+    <script>
+        Polymer({
+
+            is: 'caesar-cipher',
+
+            properties: {
+                caesarPlainText: {
+                    type: String,
+                    notify: true
+                },
+                caesarKey: {
+                    type: String,
+                    notify: true
+                },
+                caesarCipherText: {
+                    type: String,
+                    computed: 'computeCaesarText(caesarPlainText, caesarKey)'
+                },
+                deCipherText: {
+                    type: String,
+                    computed: 'computeDeCipherText(ceasarPlainText, caesarKey)'
+                }
+            },
+            computeCaesarText: function (caesarPlainText, caesarKey) {
+                var key = parseFloat(caesarKey);
+                var cipherText = "";
+                if (!isNaN(key)) {
+                    cipherText = caesarPlainText.split('').map(function (value) {
+                        return String.fromCharCode(value.charCodeAt(0) + key);
+                    }).join('');
+                }
+
+                return cipherText;
+            },
+
+
+        });
+    </script>
+</dom-module>
