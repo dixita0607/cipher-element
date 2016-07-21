@@ -1,0 +1,57 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+
+<dom-module id="cipher-input">
+    <template>
+        <style include="iron-flex"></style>
+
+        <style>
+            :host {
+                display: block;
+
+            }
+        </style>
+        <paper-card heading="[[cipherTitle]]">
+            <div class="layout vertical card-content" style="width: 500px">
+
+                <paper-input label='Plain text' always-float-label value="{{plainText}}" class="flex"></paper-input>
+                <paper-input label='key' always-float-label value="{{key}}" class="flex"></paper-input>
+                <paper-input label='Cipher text' disabled always-float-label
+                             value="{{cipherText}}" class="flex"></paper-input>
+
+            </div>
+
+        </paper-card>
+
+
+    </template>
+
+    <script>
+        Polymer({
+
+            is: 'cipher-input',
+
+            properties: {
+                plainText: {
+                    type: String,
+                    notify: true
+                },
+                key: {
+                    type: String,
+                    notify: true
+                },
+                cipherText: {
+                    type: String,
+                    notify: true
+
+                },
+                cipherTitle: {
+                    type: String
+                }
+            }
+
+        });
+    </script>
+</dom-module>

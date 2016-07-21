@@ -1,27 +1,28 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../cipher-input/cipher-input.html">
 
 <dom-module id="cipher-web-app">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]</h2>
-  </template>
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+        <cipher-input cipher-title="Caesar Cipher"></cipher-input>
+    </template>
 
-  <script>
-    Polymer({
+    <script>
+        Polymer({
 
-      is: 'cipher-web-app',
+            is: 'cipher-web-app',
 
-      properties: {
-        prop1: {
-          type: String,
-          value: 'cipher-web-app',
-        },
-      },
+            properties: {
+                prop1: {
+                    type: String,
+                    value: 'cipher-web-app'
+                }
+            }
 
-    });
-  </script>
+        });
+    </script>
 </dom-module>
