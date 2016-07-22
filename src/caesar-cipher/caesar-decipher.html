@@ -1,7 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../cipher-input/cipher-input.html">
 
-<dom-module id="caesar-de-cipher">
+<dom-module id="caesar-decipher">
     <template>
         <style>
             :host {
@@ -10,14 +10,14 @@
         </style>
 
         <cipher-input cipher-title="Caesar Decipher" plain-text="{{caesarCipherText}}" key="{{caesarKey}}"
-                      cipher-text="{{caesarDeCipherText}}"></cipher-input>
+                      cipher-text="{{caesarDecipherText}}"></cipher-input>
 
     </template>
 
     <script>
         Polymer({
 
-            is: 'caesar-de-cipher',
+            is: 'caesar-decipher',
 
             properties: {
                 caesarCipherText: {
@@ -28,7 +28,7 @@
                     type: String,
                     notify: true
                 },
-                caesarDeCipherText: {
+                caesarDecipherText: {
                     type: String,
                     computed: 'computeDecipherText(caesarCipherText, caesarKey)'
                 }
@@ -36,13 +36,13 @@
 
             computeDecipherText: function (caesarCipherText, caesarKey) {
                 var key = parseFloat(caesarKey);
-                var deCipherText = "";
+                var decipherText = "";
                 if (!isNaN(key)) {
-                    deCipherText = caesarCipherText.split('').map(function (value) {
+                    decipherText = caesarCipherText.split('').map(function (value) {
                         return String.fromCharCode(value.charCodeAt(0) - key);
                     }).join('');
                 }
-                return deCipherText;
+                return decipherText;
             }
 
         });
