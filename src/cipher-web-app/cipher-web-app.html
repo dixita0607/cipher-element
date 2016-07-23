@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../caesar-cipher/caesar-cipher.html">
 <link rel="import" href="../caesar-cipher/caesar-decipher.html">
+<link rel="import" href="../monoalphabetic-cipher/monoalphabetic-cipher.html">
 
 <dom-module id="cipher-web-app">
     <template>
@@ -9,13 +10,19 @@
                 display: block;
             }
         </style>
+        <div style="display: block">
+            <div style="display: inline-block">
+                <caesar-cipher></caesar-cipher>
+            </div>
 
-        <div style="display: inline-block">
-            <caesar-cipher></caesar-cipher>
+            <div style="display: inline-block">
+                <caesar-decipher></caesar-decipher>
+            </div>
         </div>
 
+        <br><br>
         <div style="display: inline-block">
-            <caesar-decipher></caesar-decipher>
+            <monoalphabetic-cipher></monoalphabetic-cipher>
         </div>
 
 
