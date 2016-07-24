@@ -1,0 +1,55 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../cipher-input/cipher-input.html">
+
+<dom-module id="monoalphabetic-decipher">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+
+        <cipher-input cipher-title="Mono Alphabetic Decipher" plain-text="{{monoCipherText}}" key="{{monoKey}}"
+                      cipher-text="{{monoDecipherText}}"></cipher-input>
+
+    </template>
+
+    <script>
+        Polymer({
+
+            is: 'monoalphabetic-decipher',
+
+            properties: {
+                monoCipherText: {
+                    type: String,
+                    notify: true
+                },
+                monoKey: {
+                    type: String,
+                    value: 'ISYVKJRUXEDZQMCTPLOFNBWGAH',
+                    notify: true
+                },
+                alphabet: {
+                    type: String,
+                    value: 'abcdefghijklmnopqrstuvwxyz',
+                    readonly: true
+                },
+                monoDecipherText: {
+                    type: String,
+                    computed: 'computeDecipherText(monoCipherText, monoKey, alphabet)'
+                }
+            },
+
+            computeDecipherText: function (monoCipherText, monoKey, alphabet) {
+                var keyArray = monoKey.toLowerCase().split('');
+                return monoCipherText.toLowerCase().split('').map(function (value) {
+                    if (keyArray.indexOf(value) !== -1) {
+                        return (alphabet.split(''))[keyArray.indexOf(value)];
+                    }
+                    return value;
+                }).join('');
+            }
+
+        });
+    </script>
+</dom-module>
