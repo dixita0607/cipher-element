@@ -17,7 +17,7 @@
             <div class="layout vertical card-content" style="width: 500px">
 
                 <paper-input label='Plain text' always-float-label value="{{plainText}}" class="flex"></paper-input>
-                <paper-input label='key' always-float-label value="{{key}}" class="flex"></paper-input>
+                <paper-input label='key' always-float-label value="{{key}}" class="flex" char-counter maxlength="{{maxLength}}"></paper-input>
                 <paper-input label='Cipher text' disabled always-float-label
                              value="{{cipherText}}" class="flex"></paper-input>
 
@@ -49,6 +49,10 @@
                 },
                 cipherTitle: {
                     type: String
+                },
+                maxLength: {
+                    type: String,
+                    notify: true
                 }
             }
 
