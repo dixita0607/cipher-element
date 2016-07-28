@@ -10,7 +10,6 @@
         <style>
             :host {
                 display: block;
-
             }
         </style>
         <paper-card heading="[[cipherTitle]]">
@@ -18,7 +17,8 @@
 
                 <paper-input label='Plain text' always-float-label value="{{plainText}}" class="flex"></paper-input>
                 <paper-input label='key' always-float-label value="{{key}}" class="flex" char-counter
-                             maxlength="{{maxLength}}" type="{{keyType}}"></paper-input>
+                             maxlength="{{maxLength}}" type="{{keyType}}" minlength="{{minLength}}" auto-validate
+                             error-message="{{errorMessage}}" max="{{maxLengthForNumber}}"></paper-input>
                 <paper-input label='Cipher text' disabled always-float-label
                              value="{{cipherText}}" class="flex"></paper-input>
 
@@ -55,7 +55,19 @@
                     type: String,
                     notify: true
                 },
+                minLength: {
+                    type: String,
+                    notify: true
+                },
+                maxLengthForNumber: {
+                    type: String,
+                    notify: true
+                },
                 keyType: {
+                    type: String,
+                    notify: true
+                },
+                errorMessage: {
                     type: String,
                     notify: true
                 }
