@@ -10,7 +10,8 @@
         </style>
 
         <cipher-input cipher-title="Mono Alphabetic Cipher" plain-text="{{monoPlainText}}" key="{{monoKey}}"
-                      cipher-text="{{monoCipherText}}" max-length="26"></cipher-input>
+                      cipher-text="{{monoCipherText}}" max-length="26" min-length="26"
+                      error-message="Length of Key must be 26"></cipher-input>
 
     </template>
 
@@ -39,8 +40,7 @@
                     computed: 'computeMonoText(monoPlainText, monoKey, alphabet)'
                 }
             },
-
-            computeMonoText(monoPlainText, monoKey, alphabet) {
+            computeMonoText: function (monoPlainText, monoKey, alphabet) {
 
                 return monoPlainText.toLowerCase().split('').map(function (value) {
                     if (alphabet.indexOf(value) !== -1) {
@@ -52,5 +52,6 @@
             }
 
         });
+
     </script>
 </dom-module>

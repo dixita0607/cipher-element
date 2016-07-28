@@ -10,7 +10,8 @@
         </style>
 
         <cipher-input cipher-title="Caesar Decipher" plain-text="{{caesarCipherText}}" key="{{caesarKey}}"
-                      cipher-text="{{caesarDecipherText}}" max-length="10" key-type="number"></cipher-input>
+                      cipher-text="{{caesarDecipherText}}" key-type="number" max-length-for-number="10000000000"
+                      error-message="Only numbers are allowed of length 10"></cipher-input>
 
     </template>
 

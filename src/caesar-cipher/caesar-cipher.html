@@ -10,7 +10,8 @@
         </style>
 
         <cipher-input cipher-title="Caesar Cipher" plain-text="{{caesarPlainText}}" key="{{caesarKey}}"
-                      cipher-text="{{caesarCipherText}}" max-length="10" key-type="number"></cipher-input>
+                      cipher-text="{{caesarCipherText}}" key-type="number" max-length-for-number="10000000000"
+                      error-message="Only numbers are allowed of length 10"></cipher-input>
 
     </template>
 
@@ -31,10 +32,6 @@
                 caesarCipherText: {
                     type: String,
                     computed: 'computeCaesarText(caesarPlainText, caesarKey)'
-                },
-                deCipherText: {
-                    type: String,
-                    computed: 'computeDeCipherText(ceasarPlainText, caesarKey)'
                 }
             },
             computeCaesarText: function (caesarPlainText, caesarKey) {
@@ -47,7 +44,7 @@
                 }
 
                 return cipherText;
-            },
+            }
 
 
         });
