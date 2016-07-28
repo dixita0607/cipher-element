@@ -3,32 +3,53 @@
 <link rel="import" href="../caesar-cipher/caesar-decipher.html">
 <link rel="import" href="../monoalphabetic-cipher/monoalphabetic-cipher.html">
 <link rel="import" href="../monoalphabetic-cipher/monoalphabetic-decipher.html">
+<link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
 
 <dom-module id="cipher-web-app">
     <template>
-        <style>
+        <style include="iron-flex"></style>
+        <style is="custom-style">
             :host {
                 display: block;
             }
-        </style>
-        <div style="display: block">
-            <div style="display: inline-block">
-                <caesar-cipher></caesar-cipher>
-            </div>
 
-            <div style="display: inline-block">
-                <caesar-decipher></caesar-decipher>
-            </div>
+            paper-toolbar {
+                --paper-toolbar-background: coral;
+                --calculated-paper-toolbar-height: 80px;
+                --paper-toolbar: {
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 25px;
+                    font-style: normal;
+                };
+
+            }
+
+        </style>
+
+        <paper-header-panel mode="standard">
+            <paper-toolbar>
+                <div>
+                    Cipher Application
+                </div>
+            </paper-toolbar>
+        </paper-header-panel>
+
+        <br><br>
+
+        <div class="layout horizontal center-center">
+            <caesar-cipher></caesar-cipher>
+            <caesar-decipher></caesar-decipher>
         </div>
 
         <br><br>
-        <div style="display: inline-block">
+
+        <div class="layout horizontal center-center">
             <monoalphabetic-cipher></monoalphabetic-cipher>
-        </div>
-        <div style="display: inline-block">
             <monoalphabetic-decipher></monoalphabetic-decipher>
         </div>
-
 
 
     </template>
@@ -36,14 +57,7 @@
     <script>
         Polymer({
 
-            is: 'cipher-web-app',
-
-            properties: {
-                prop1: {
-                    type: String,
-                    value: 'cipher-web-app'
-                }
-            }
+            is: 'cipher-web-app'
 
         });
     </script>
