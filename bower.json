@@ -6,6 +6,8 @@
     "polymer": "Polymer/polymer#^1.4.0",
     "paper-input": "^1.1.15",
     "paper-card": "PolymerElements/paper-card#^1.1.1",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
+    "paper-header-panel": "PolymerElements/paper-header-panel#^1.1.6",
+    "paper-toolbar": "PolymerElements/paper-toolbar#^1.1.6"
   }
 }

@@ -1,0 +1,77 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../cipher-input/cipher-input.html">
+<script src="../../index.js"></script>
+
+<dom-module id="polyalphabetic-cipher">
+    <template>
+        <style></style>
+
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+
+        <cipher-input cipher-title="Poly Alphabetic Cipher" plain-text="{{polyPlainText}}" key="{{polyKey}}"
+                      cipher-text="{{polyCipherText}}" max-length="26" min-length="3"
+                      error-message="Key length must be between 3 to 26 characters."></cipher-input>
+
+    </template>
+
+    <script>
+        Polymer({
+
+            is: 'polyalphabetic-cipher',
+
+            properties: {
+                polyPlainText: {
+                    type: String,
+                    notify: true
+                },
+                polyKey: {
+                    type: String,
+                    value: "MEC",
+                    notify: true
+                },
+                polyCipherText: {
+                    type: String,
+                    computed: 'computePolyText(polyPlainText, polyKey)'
+                }
+            },
+
+            computePolyText: function (polyPlainText, polyKey) {
+
+                var keyArray = [], cipherText = [];
+                polyPlainText = polyPlainText.split('').filter(function (value) {
+                    return (value != ' ');
+                }).join('').toUpperCase();
+
+                polyKey = polyKey.toUpperCase();
+
+                for (var x = 0; keyArray.length < polyPlainText.length; x++) {
+                    keyArray.push(polyKey);
+                }
+
+                keyArray = keyArray.join('').substr(0, polyPlainText.length).split('');
+
+                var alphabetArray = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+                var vigenereTable = [];
+                vigenereTable.push(alphabetArray);
+                for (var i = 1; i < 26; i++) {
+                    vigenereTable.push(generateShiftedAlphabets(cloneArray(vigenereTable[i - 1])));
+                }
+
+                for (var j = 0; j < polyPlainText.length; j++) {
+                    var rowNo = keyArray[j].charCodeAt(0) - ('A').charCodeAt(0);
+                    var colNO = polyPlainText.split('')[j].charCodeAt(0) - ('A').charCodeAt(0);
+                    cipherText.push(vigenereTable[rowNo][colNO]);
+                }
+
+                return cipherText.join('');
+
+            }
+
+
+        });
+    </script>
+</dom-module>
