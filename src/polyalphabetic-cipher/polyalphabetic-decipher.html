@@ -1,0 +1,81 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../cipher-input/cipher-input.html">
+<script src="../../index.js"></script>
+
+<dom-module id="polyalphabetic-decipher">
+    <template>
+        <style></style>
+
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+
+        <cipher-input cipher-title="Poly Alphabetic Decipher" plain-text="{{polyCipherText}}" key="{{polyKey}}"
+                      cipher-text="{{polyDecipherText}}" min-length="3" max-length="26"
+                      error-message="Key length must be between 3 to 26 characters."></cipher-input>
+
+    </template>
+
+    <script>
+        Polymer({
+
+            is: 'polyalphabetic-decipher',
+
+            properties: {
+                polyCipherText: {
+                    type: String,
+                    notify: true
+                },
+                polyKey: {
+                    type: String,
+                    value: "MEC",
+                    notify: true
+                },
+                polyDecipherText: {
+                    type: String,
+                    computed: 'computeDecipherText(polyCipherText, polyKey)'
+                }
+            },
+
+            computeDecipherText: function (polyCipherText, polyKey) {
+                var keyArray = [], decipherText = [], vigenereTable = [];
+
+                var alphabetArray = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+                vigenereTable.push(alphabetArray);
+                for (var i = 1; i < 26; i++) {
+                    vigenereTable.push(generateShiftedAlphabets(cloneArray(vigenereTable[i - 1])));
+                }
+
+                polyKey = polyKey.toUpperCase();
+                polyCipherText = polyCipherText.toUpperCase().split('').filter(function (value) {
+                    return (value != ' ');
+                }).join('');
+
+                for (var x = 0; keyArray.length < polyCipherText.length; x++) {
+                    keyArray.push(polyKey);
+                }
+
+                keyArray = keyArray.join('').substr(0, polyCipherText.length).split('');
+
+
+                for (var j = 0; j < polyCipherText.length; j++) {
+
+                    var rowNo = keyArray[j].charCodeAt(0) - ('A').charCodeAt(0);
+                    for (var k = 0; k < 26; k++) {
+                        if (vigenereTable[rowNo][k] === (polyCipherText.split('')[j])) {
+                            decipherText.push(vigenereTable[0][k]);
+                            break;
+                        }
+                    }
+
+                }
+                return decipherText.join('');
+
+            }
+
+
+        });
+    </script>
+</dom-module>
