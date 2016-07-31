@@ -12,14 +12,14 @@
 
 <dom-module id="cipher-web-app">
     <template>
-        <style include="iron-flex"></style>
+        <style include="iron-flex iron-flex-alignment"></style>
         <style is="custom-style">
             :host {
                 display: block;
             }
 
             paper-toolbar {
-                --paper-toolbar-background: coral;
+                --paper-toolbar-background: tomato;
                 --calculated-paper-toolbar-height: 80px;
                 --paper-toolbar: {
                     font-family: 'Roboto', sans-serif;
@@ -41,21 +41,21 @@
 
         <br><br>
 
-        <div class="layout horizontal center-center">
+        <div class="layout horizontal around-justified">
             <caesar-cipher></caesar-cipher>
             <caesar-decipher></caesar-decipher>
         </div>
 
         <br><br>
 
-        <div class="layout horizontal center-center">
+        <div class="layout horizontal around-justified">
             <monoalphabetic-cipher></monoalphabetic-cipher>
             <monoalphabetic-decipher></monoalphabetic-decipher>
         </div>
 
         <br><br>
 
-        <div class="layout horizontal center-center">
+        <div class="layout horizontal around-justified">
             <polyalphabetic-cipher></polyalphabetic-cipher>
             <polyalphabetic-decipher></polyalphabetic-decipher>
 
